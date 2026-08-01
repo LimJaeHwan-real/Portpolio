@@ -1,6 +1,12 @@
 import { skills, projects } from "./projects";
+import { fetchReadme } from "./readme";
+import Projects from "./ProjectsSection";
 
-export default function Page() {
+export default async function Page() {
+  const entries = await Promise.all(
+    projects.map(async (p) => [p.repo, await fetchReadme(p.repo)] as const),
+  );
+  const readmes = Object.fromEntries(entries);
   return (
     <>
       <header className="header">
@@ -56,34 +62,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="section" id="projects">
-        <div className="section-head">
-          <span className="num">02</span>
-          <h2>Projects</h2>
-          <span className="count">{projects.length} selected</span>
-        </div>
-        <div className="cards">
-          {projects.map((p) => (
-            <article className="card" key={p.repo}>
-              <div className="card-head">
-                <h3>{p.name}</h3>
-                <span className="badge">{p.kind}</span>
-              </div>
-              <p>{p.desc}</p>
-              <ul className="roles">
-                {p.roles.map((role) => (
-                  <li key={role}><span>{role}</span></li>
-                ))}
-              </ul>
-              <div className="tech">
-                {p.tech.map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <Projects readmes={readmes} />
 
       <footer className="footer">
         <span>© 2026 Jaehwan Lim</span>
