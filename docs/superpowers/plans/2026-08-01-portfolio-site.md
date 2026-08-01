@@ -36,7 +36,7 @@
 | `app/projects.ts` | 프로젝트 데이터 배열 + `Project` 타입 |
 | `app/readme.ts` | `fetchReadme(repo)` / `renderReadme(md)` |
 | `app/readme.test.mts` | 위 두 함수의 단위 테스트 |
-| `app/Projects.tsx` | 클라이언트 컴포넌트. 카드 그리드 + `<dialog>` README 모달 |
+| `app/ProjectsSection.tsx` | 클라이언트 컴포넌트. 카드 그리드 + `<dialog>` README 모달 |
 
 ## 핸드오프 대비 의도적 차이
 
@@ -580,7 +580,7 @@ git add -A && git commit -m "feat: Skills 섹션 + Projects 카드 그리드"
 ### Task 3: README 모달 (서버 fetch + native `<dialog>`)
 
 **Files:**
-- Create: `app/readme.ts`, `app/readme.test.mts`, `app/Projects.tsx`
+- Create: `app/readme.ts`, `app/readme.test.mts`, `app/ProjectsSection.tsx`
 - Modify: `app/page.tsx` (Projects 섹션을 `<Projects />` 호출로 교체)
 - Modify: `package.json` (test 스크립트)
 
@@ -676,7 +676,7 @@ npm test
 
 Expected: `# pass 4` / `# fail 0`
 
-- [ ] **Step 6: `app/Projects.tsx` 생성**
+- [ ] **Step 6: `app/ProjectsSection.tsx` 생성**
 
 ```tsx
 "use client";
@@ -839,7 +839,7 @@ npm run build
 ## 구조
 
 - `app/page.tsx` — 서버 컴포넌트. Header / Hero / Skills / Footer + README prefetch
-- `app/Projects.tsx` — 클라이언트 컴포넌트. 카드 그리드 + README 모달
+- `app/ProjectsSection.tsx` — 클라이언트 컴포넌트. 카드 그리드 + README 모달
 - `app/projects.ts` — 프로젝트·스킬 데이터. 내용 수정은 여기만 고치면 된다
 - `app/readme.ts` — README fetch + 마크다운 렌더링
 - `app/globals.css` — 디자인 토큰과 전체 스타일 (단일 파일)
