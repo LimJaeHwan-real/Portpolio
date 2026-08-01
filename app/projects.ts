@@ -6,6 +6,8 @@ export type Project = {
   tech: string[];
   /** "owner/repo" 형태 */
   repo: string;
+  /** README를 가져올 커밋/브랜치. 기본값 "HEAD" — 팀 저장소처럼 내용을 신뢰할 수 없으면 커밋 SHA로 고정한다 */
+  ref?: string;
   /** 있을 때만 "▶ 영상 보기" 버튼이 렌더된다 */
   videoUrl?: string;
 };
@@ -22,6 +24,8 @@ export const projects: Project[] = [
     ],
     tech: ["React", "TypeScript", "NestJS", "PostgreSQL"],
     repo: "na-man-mu-303-team2/Orbit",
+    // 팀 저장소라 단독 소유가 아님 — README 내용이 바뀌지 않도록 커밋 SHA에 고정한다.
+    ref: "ff098b08775bd1645747e77b4949f75b50188ecb",
     videoUrl: "https://www.youtube.com/watch?v=A8zEN_jbdo8&t=324s",
   },
   {

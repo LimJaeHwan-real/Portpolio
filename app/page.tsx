@@ -4,7 +4,7 @@ import Projects from "./ProjectsSection";
 
 export default async function Page() {
   const entries = await Promise.all(
-    projects.map(async (p) => [p.repo, await fetchReadme(p.repo)] as const),
+    projects.map(async (p) => [p.repo, await fetchReadme(p.repo, fetch, p.ref)] as const),
   );
   const readmes = Object.fromEntries(entries);
   return (
