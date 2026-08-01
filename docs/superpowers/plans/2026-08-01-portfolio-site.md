@@ -15,10 +15,14 @@
 - 색: bg `#f3f2f2` / surface `#eae9e9` / ink `#201e1d` / divider `color-mix(in srgb, #201e1d 40%, transparent)`
 - 액센트: `#1240e8` (레퍼런스 HTML `:root` 값. 핸드오프 README 본문의 `#0b63d6`과 불일치 — HTML을 정본으로 채택. 바꾸려면 `--accent` 한 줄만 수정)
 - 경계선: 섹션·헤더·카드 = 2px ink, 카드 내부 구분선 = 1px divider
-- 그림자는 카드 hover의 `10px 10px 0 var(--accent)` 오프셋 하나뿐. 블러 섀도우 금지
+- 드롭 섀도우는 카드 hover의 `10px 10px 0 var(--accent)` 오프셋 하나뿐. 블러 섀도우 금지.
+  (예외: `.lede strong`의 `box-shadow: inset 0 -0.32em 0 var(--accent-200)`는 핸드오프가 명시한
+  형광펜 밑줄 장식이다. 드롭 섀도우가 아니므로 이 제약의 대상이 아니다)
 - 모션은 카드/버튼/링크 hover만. 스크롤 등장 애니메이션 없음
 - 한국어 카피는 계획서에 적힌 문자열을 **그대로** 사용 (임의 윤문 금지)
-- 브레이크포인트 없이 `auto-fit` + `clamp()`로 반응형
+- 브레이크포인트 없이 `auto-fit` + `clamp()`로 반응형.
+  (예외: `.cards`의 트랙이 `minmax(400px, 1fr)`라 400px보다 좁은 화면에서 가로 오버플로우가 난다.
+  이를 막는 `@media (max-width: 460px) { .cards { grid-template-columns: 1fr } }` 한 줄만 허용)
 - `:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }`
 - 저장소: `https://github.com/LimJaeHwan-real/Portpolio.git` (현재 비어 있음), 로컬 경로 `C:\Users\home\workspace\Portpolio`
 
@@ -68,8 +72,12 @@
 `C:\Users\home\workspace` 에서 실행. (`docs/`가 이미 있어도 create-next-app이 허용하는 파일 목록에 포함되어 있어 문제없다.)
 
 ```bash
-npx create-next-app@latest Portpolio --ts --app --no-tailwind --no-src-dir --no-eslint --import-alias "@/*" --use-npm
+npx create-next-app@latest portpolio-tmp --ts --app --no-tailwind --no-src-dir --no-eslint --import-alias "@/*" --use-npm
 ```
+
+> npm은 대문자가 든 패키지명을 거부하므로 `create-next-app`에 `Portpolio`를 직접 줄 수 없다. 소문자 임시
+> 디렉터리에 생성한 뒤 파일을 `Portpolio/`로 옮긴다. **`package.json`과 `package-lock.json` 양쪽의
+> `name`을 `portpolio`로 맞출 것** — 둘이 어긋나면 Vercel 빌드의 `npm ci`가 실패한다.
 
 - [ ] **Step 2: 원격 저장소 연결 + 기본 애셋 정리**
 
