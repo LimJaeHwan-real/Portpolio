@@ -51,18 +51,27 @@ export default function Projects({ readmes }: { readmes: Record<string, string> 
       </div>
 
       {/* 배경 클릭 닫기만 직접 처리. Esc·포커스 트랩·배경 비활성화는 <dialog>가 해준다 */}
-      <dialog ref={dialog} onClick={(e) => { if (e.target === dialog.current) dialog.current?.close(); }}>
-        <div className="modal-head">
-          <div className="kicker">README</div>
-          <div className="title">{active?.name}</div>
-          <button type="button" className="modal-close" aria-label="닫기" onClick={() => dialog.current?.close()}>✕</button>
-        </div>
-        <div className="modal-body">
-          <div className="readme" dangerouslySetInnerHTML={{ __html: active ? readmes[active.repo] : "" }} />
-        </div>
-        <div className="modal-foot">
-          <a className="btn" href={`https://github.com/${active?.repo}`} target="_blank" rel="noreferrer">GitHub ↗</a>
-        </div>
+      <dialog
+        ref={dialog}
+        aria-labelledby="readme-modal-title"
+        onClick={(e) => { if (e.target === dialog.current) dialog.current?.close(); }}
+        onClose={() => setActive(null)}
+      >
+        {active && (
+          <>
+            <div className="modal-head">
+              <div className="kicker">README</div>
+              <h2 className="title" id="readme-modal-title">{active.name}</h2>
+              <button type="button" className="modal-close" aria-label="닫기" onClick={() => dialog.current?.close()}>✕</button>
+            </div>
+            <div className="modal-body">
+              <div className="readme" dangerouslySetInnerHTML={{ __html: readmes[active.repo] }} />
+            </div>
+            <div className="modal-foot">
+              <a className="btn" href={`https://github.com/${active.repo}`} target="_blank" rel="noreferrer">GitHub ↗</a>
+            </div>
+          </>
+        )}
       </dialog>
     </section>
   );
