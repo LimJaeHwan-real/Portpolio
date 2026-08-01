@@ -1,3 +1,5 @@
+import { skills, projects } from "./projects";
+
 export default function Page() {
   return (
     <>
@@ -29,6 +31,57 @@ export default function Page() {
             <a href="https://LimJaeHwan-real.github.io/BlogLim" target="_blank" rel="noreferrer">기술 블로그 ↗</a>
             <a href="https://github.com/LimJaeHwan-real" target="_blank" rel="noreferrer">GitHub ↗</a>
           </div>
+        </div>
+      </section>
+
+      <section className="section" id="skills">
+        <div className="section-head">
+          <span className="num">01</span>
+          <h2>Skills</h2>
+        </div>
+        <div className="skills-grid">
+          {skills.map((group) => (
+            <div key={group.name}>
+              <div className="skill-head">
+                <span className="name">{group.name}</span>
+                <span className="n">{String(group.items.length).padStart(2, "0")}</span>
+              </div>
+              <div className="tags">
+                {group.items.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section" id="projects">
+        <div className="section-head">
+          <span className="num">02</span>
+          <h2>Projects</h2>
+          <span className="count">{projects.length} selected</span>
+        </div>
+        <div className="cards">
+          {projects.map((p) => (
+            <article className="card" key={p.repo}>
+              <div className="card-head">
+                <h3>{p.name}</h3>
+                <span className="badge">{p.kind}</span>
+              </div>
+              <p>{p.desc}</p>
+              <ul className="roles">
+                {p.roles.map((role) => (
+                  <li key={role}><span>{role}</span></li>
+                ))}
+              </ul>
+              <div className="tech">
+                {p.tech.map((t) => (
+                  <span key={t}>{t}</span>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
