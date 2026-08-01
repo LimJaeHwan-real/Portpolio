@@ -7,10 +7,15 @@ const FALLBACK =
   "<p>아래 GitHub 버튼으로 저장소를 직접 확인해 주세요.</p>";
 
 // 스킴이 있거나(https:, mailto:) 프로토콜 상대(//)거나 페이지 내부 앵커(#)면 절대 URL로 본다.
+// "//"부터 먼저 검사해야 한다 — 단일 "/"만 보고 판정하면 프로토콜 상대 URL(//host/path)까지
+// "루트 상대"로 오판해 base와 이어붙여 버린다.
 const ABSOLUTE_URL = /^([a-z][a-z0-9+.-]*:|\/\/|#)/i;
+const ROOT_RELATIVE = /^\//;
 
 function resolve(url: string, base: string): string {
-  return ABSOLUTE_URL.test(url) ? url : base + url.replace(/^\.\//, "");
+  if (ABSOLUTE_URL.test(url)) return url;
+  if (ROOT_RELATIVE.test(url)) return base + url.slice(1);
+  return base + url.replace(/^\.\//, "");
 }
 
 /**
@@ -61,14 +66,14 @@ export async function fetchReadme(
   f: typeof fetch = fetch,
   ref: string = "HEAD",
 ): Promise<string> {
-  let res: Response;
   try {
-    res = await f(`https://raw.githubusercontent.com/${repo}/${ref}/README.md`, {
+    const res = await f(`https://raw.githubusercontent.com/${repo}/${ref}/README.md`, {
       next: { revalidate: 3600 },
     });
+    if (!res.ok) return FALLBACK;
+    return renderReadme(await res.text(), repo, ref);
   } catch {
+    // 연결 자체의 실패든 스트리밍 도중의 실패든(끊긴 연결, 타임아웃) 빌드를 죽이지 않는다.
     return FALLBACK;
   }
-  if (!res.ok) return FALLBACK;
-  return renderReadme(await res.text(), repo, ref);
 }

@@ -63,3 +63,23 @@ test("절대 URL은 치환하지 않는다", () => {
   const html = renderReadme("[ext](https://example.com/page)", "owner/repo");
   assert.match(html, /href="https:\/\/example\.com\/page"/);
 });
+
+test("본문을 읽다가 실패해도 안내 문구를 반환한다", async () => {
+  const res = new Response("ok", { status: 200 });
+  res.text = () => Promise.reject(new Error("stream reset"));
+  const html = await fetchReadme("owner/repo", async () => res);
+  assert.match(html, /README를 불러올 수 없습니다/);
+});
+
+test("루트 상대 경로(단일 /)는 저장소 루트 기준 절대 URL로 치환하고 // 를 겹치지 않는다", () => {
+  const html = renderReadme("[문서](/docs/x.md)", "owner/repo", "abc123");
+  assert.match(
+    html,
+    /href="https:\/\/github\.com\/owner\/repo\/blob\/abc123\/docs\/x\.md"/,
+  );
+});
+
+test("프로토콜 상대 URL(//)은 치환하지 않는다", () => {
+  const html = renderReadme("![img](//example.com/x.png)", "owner/repo");
+  assert.match(html, /src="\/\/example\.com\/x\.png"/);
+});
