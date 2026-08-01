@@ -24,7 +24,9 @@ export default async function Page() {
           <span className="rule" />
           <span className="year">2026</span>
         </div>
-        <h1>임재환<br />Jaehwan&nbsp;Lim</h1>
+        {/* 일반 공백을 쓴다: &nbsp; 로 묶으면 "JAEHWAN LIM"(44px에서 308px)이 한 덩어리가 되어
+            320px 화면(본문 폭 280px)에서 가로로 넘친다. 공백이면 필요할 때만 두 줄로 접힌다. */}
+        <h1>임재환<br />Jaehwan Lim</h1>
         <div className="hero-grid">
           <p className="lede">
             새로운 지식을 빠르게 학습한 뒤 AI를 활용해 구현할 수 있는 개발자입니다.
