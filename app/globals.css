@@ -3,7 +3,7 @@
   --surface: #eae9e9;
   --ink: #201e1d;
   --divider: color-mix(in srgb, var(--ink) 40%, transparent);
-  --muted: color-mix(in srgb, var(--ink) 55%, transparent);
+  --muted: color-mix(in srgb, var(--ink) 65%, transparent);
   --accent: #1240e8;
   --accent-200: color-mix(in srgb, var(--accent) 24%, #fff);
   --accent-600: color-mix(in srgb, var(--accent) 82%, #000);
@@ -53,7 +53,8 @@ button { font-family: inherit; }
 .nav .gh:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(56px, 9vw, 120px) var(--pad-x) 0; }
+/* scroll-margin-top: sticky .header의 실측 높이(52px, 14px 패딩 상하 + 17px 브랜드 라인박스 + 2px 보더) */
+.hero { scroll-margin-top: 52px; padding: clamp(56px, 9vw, 120px) var(--pad-x) 0; }
 .eyebrow {
   display: flex; gap: 14px; align-items: baseline;
   font-size: 12px; font-weight: 600; letter-spacing: 0.16em;
@@ -87,7 +88,7 @@ button { font-family: inherit; }
 .contact a:hover { border-bottom-color: var(--accent); color: var(--accent-700); }
 
 /* ---------- Section ---------- */
-.section { border-top: 2px solid var(--ink); padding: var(--sec-y) var(--pad-x); }
+.section { scroll-margin-top: 52px; border-top: 2px solid var(--ink); padding: var(--sec-y) var(--pad-x); }
 .section-head {
   display: flex; gap: 16px; align-items: baseline;
   margin-bottom: clamp(28px, 4vw, 44px);
@@ -171,7 +172,9 @@ dialog[open] { display: flex; flex-direction: column; }
 
 /* ---------- README markdown ---------- */
 .readme { max-width: 72ch; }
-.readme img, .readme picture { display: none; }
+.readme img { max-width: 100%; height: auto; }
+.readme img[src*="shields.io"], .readme img[src*="badge"] { display: none; }
+.readme picture { display: none; }
 .readme h1, .readme h2, .readme h3, .readme h4, .readme h5, .readme h6 {
   font-weight: 800; margin: 24px 0 10px; letter-spacing: -0.01em;
 }
@@ -203,3 +206,9 @@ dialog[open] { display: flex; flex-direction: column; }
   font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
 }
 .footer .right { margin-left: auto; color: var(--muted); }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .card { transition: none; }
+}
