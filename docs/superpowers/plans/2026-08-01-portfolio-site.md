@@ -6,7 +6,7 @@
 
 **Architecture:** App Router 단일 라우트(`/`). 페이지는 서버 컴포넌트로 GitHub raw README 3개를 `revalidate: 3600`으로 가져와 `marked`로 HTML 변환한 뒤, Projects 섹션(클라이언트 컴포넌트)에 문자열로 넘긴다. 모달은 브라우저 기본 `<dialog>` + `showModal()`을 쓰므로 Esc 닫기·포커스 트랩·배경 비활성화·백드롭을 직접 구현하지 않는다. 스타일은 Tailwind 없이 `app/globals.css` 한 파일(CSS 변수 토큰 + 클래스).
 
-**Tech Stack:** Next.js 15 (App Router, TypeScript), React 19, `marked`, Vercel, Node 24 내장 `node --test`
+**Tech Stack:** Next.js 16 (App Router, TypeScript), React 19, `marked`, Vercel, Node 24 내장 `node --test`
 
 ## Global Constraints
 
@@ -861,33 +861,25 @@ git branch -M main && git push -u origin main
 
 Expected: `branch 'main' set up to track 'origin/main'`
 
-- [ ] **Step 4: Vercel 로그인 및 프로젝트 연결**
+- [ ] **Step 4: Vercel 대시보드에서 저장소 Import**
 
-```bash
-npx vercel login
-```
+`npx vercel link` + `npx vercel`은 CLI로만 연결된 프로젝트를 만들어 GitHub 연동이 없다 —
+이후 `git push`가 재배포를 트리거하지 않는다. 대신 Vercel 대시보드에서 Git 저장소를
+직접 Import해 push-to-deploy를 확보한다.
 
-브라우저가 열리면 사용자가 GitHub 계정으로 로그인한다. 이어서:
+Vercel 대시보드 → **New** → **Import Git Repository** → `LimJaeHwan-real/Portpolio` 선택.
+Framework Preset은 Next.js가 자동 인식된다. 그대로 **Deploy**.
 
-```bash
-npx vercel link --yes
-```
+- [ ] **Step 5: 첫 배포 확인**
 
-- [ ] **Step 5: 프리뷰 배포로 먼저 검증**
+Import 시 자동으로 첫 배포가 시작된다. 대시보드의 Deployments 탭에서 빌드 로그를 확인하고,
+발급된 `https://portpolio-*.vercel.app` 프리뷰 URL을 열어 Task 3 Step 9의 확인 항목을
+다시 한 번 점검한다 (특히 3개 README가 모두 실제 내용으로 뜨는지).
 
-```bash
-npx vercel
-```
+- [ ] **Step 6: 이후 배포는 push로 트리거됨**
 
-Expected: `https://portpolio-*.vercel.app` 형태의 URL 출력. 그 URL을 열어 Task 3 Step 9의 확인 항목을 다시 한 번 점검한다 (특히 3개 README가 모두 실제 내용으로 뜨는지).
-
-- [ ] **Step 6: 사용자 확인 후 프로덕션 배포**
-
-프리뷰가 정상이면 사용자에게 "프로덕션 배포할까요?" 확인을 받고:
-
-```bash
-npx vercel --prod
-```
+Git 연동을 통했으므로 이 시점부터 `main` 브랜치로의 `git push`가 자동으로 프로덕션
+재배포를 트리거한다. 별도의 `vercel --prod` 실행이 필요 없다.
 
 - [ ] **Step 7: 도메인 연결 (사용자 작업)**
 
