@@ -20,9 +20,8 @@ export const projects: Project[] = [
     kind: "팀 프로젝트",
     desc: "발표자료 생성, 편집, 리허설 코칭, 실전 발표를 하나의 서비스로 연결하는 팀 프로젝트입니다.",
     roles: [
-      "TypeScript CI를 구성했습니다.",
-      "커밋 SHA 기반 이미지 배포를 적용했습니다.",
-      "EC2·CloudFront 상태 점검과 릴리스 사전 검증을 구성했습니다.",
+      "빌드·문법 검사·테스트를 자동 실행하는 CI를 GitHub Actions로 구축해, 문제 있는 코드가 merge 전에 걸러지게 했습니다.",
+      "커밋 단위로 버전을 추적하는 EC2·CloudFront 자동 배포 파이프라인을 구축하고, 배포 전후 정상 동작을 자동 검증해 잘못된 배포가 사용자에게 노출되지 않게 했습니다.",
     ],
     tech: ["React", "TypeScript", "NestJS", "PostgreSQL"],
     repo: "na-man-mu-303-team2/Orbit",
@@ -37,8 +36,8 @@ export const projects: Project[] = [
     desc: "PUBG 전적 데이터에 한국어로 질문하면 LLM이 데이터 카탈로그를 참고해 SQL을 생성·실행하고 차트로 답하는 데이터 파이프라인 프로젝트입니다.",
     roles: [
       "Airflow 일 배치 DAG(수집→마트→품질→정합성 검증)로 14일 후 소멸되는 매치 데이터 1,500건·23만 행을 무인 증분 적재했습니다.",
-      "YAML 데이터 카탈로그를 문서·정합성 검증 기준·LLM 프롬프트 컨텍스트 세 역할로 설계해 text-to-SQL 정확도를 확보했습니다.",
-      "SELECT 전용·LIMIT 강제·타임아웃의 SQL 안전장치를 두고, 같은 데이터 기반을 REST API와 MCP 서버 두 경로로 노출했습니다.",
+      "데이터 카탈로그와 실제 DB 구조가 어긋나면 LLM이 잘못된 답을 만들기 때문에, 둘의 일치를 자동 검사하는 검증 단계를 파이프라인에 넣었습니다.",
+      "이 검증으로 무기가 아닌 데이터(차량·낙사 등)가 무기 통계에 섞여 들어가던 문제를 발견하고, 원본 데이터를 확인해 수집 코드를 바로잡았습니다.",
     ],
     tech: ["Python", "FastAPI", "Airflow", "PostgreSQL", "Docker", "AWS (EC2·S3)"],
     repo: "LimJaeHwan-real/ChickenTalk",
@@ -60,8 +59,8 @@ export const projects: Project[] = [
     kind: "팀 프로젝트",
     desc: "Python으로 구현한 인메모리 키-값 저장소입니다.",
     roles: [
-      "String·List·Set·Hash·Sorted Set 명령의 단위 테스트를 설계·구현했습니다.",
-      "Hot Key 상황의 동시성 검증을 구현했습니다.",
+      "여러 클라이언트를 동시에 처리하는 TCP 서버를 만들고, 쓰기 요청을 한 줄로 세워 순서대로 처리해 동시 쓰기에도 데이터가 꼬이지 않게 설계했습니다.",
+      "변경 기록을 파일에 남겨 재시작 시 복원하는 AOF 복구와 TTL 자동 만료를 구현하고, MongoDB와 응답 속도·처리량을 비교하는 벤치마크로 성능을 검증했습니다.",
     ],
     tech: ["Python"],
     repo: "LimJaeHwan-real/redis",
