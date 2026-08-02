@@ -20,8 +20,10 @@ function resolve(url: string, base: string): string {
 
 /**
  * ponytail: marked 출력은 sanitize-html을 거친 뒤 dangerouslySetInnerHTML로 들어간다.
- * repo 셋 중 na-man-mu-303-team2/Orbit은 팀 저장소(단독 소유가 아님)라 README 내용을
- * 신뢰할 수 없다고 보고, 태그/속성 allowlist + 커밋 SHA 고정(fetchReadme의 ref)으로 방어한다.
+ * 목록에는 단독 소유가 아닌 팀 저장소가 섞여 있어(현재 na-man-mu-303-team2/Orbit,
+ * Jungle-12-303/wk8-team4-sql-api) README 내용을 신뢰할 수 없다고 보고,
+ * 태그/속성 allowlist + 커밋 SHA 고정(projects.ts의 ref)으로 방어한다.
+ * 팀 저장소를 추가할 때는 projects.ts에서 ref를 반드시 SHA로 지정할 것.
  */
 export function renderReadme(md: string, repo: string, ref: string = "HEAD"): string {
   const html = marked.parse(md, { async: false }) as string;
