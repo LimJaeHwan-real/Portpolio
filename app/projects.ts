@@ -78,7 +78,7 @@ export const projects: Project[] = [
 ];
 
 export const skills: { name: string; items: string[] }[] = [
-  { name: "Language", items: ["Python", "TypeScript", "JavaScript"] },
+  { name: "Language", items: ["Python", "TypeScript", "JavaScript", "C"] },
   { name: "Frontend", items: ["React"] },
   { name: "Backend", items: ["NestJS"] },
   { name: "DevOps", items: ["Docker", "Redis"] },
