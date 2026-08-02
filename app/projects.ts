@@ -10,6 +10,8 @@ export type Project = {
   ref?: string;
   /** 있을 때만 "▶ 영상 보기" 버튼이 렌더된다 */
   videoUrl?: string;
+  /** 있을 때만 "↗ 사이트 보기" 버튼이 렌더된다 (배포된 라이브 서비스 주소) */
+  siteUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -27,6 +29,7 @@ export const projects: Project[] = [
     // 팀 저장소라 단독 소유가 아님 — README 내용이 바뀌지 않도록 커밋 SHA에 고정한다.
     ref: "ff098b08775bd1645747e77b4949f75b50188ecb",
     videoUrl: "https://www.youtube.com/watch?v=A8zEN_jbdo8&t=324s",
+    siteUrl: "https://www.tryorbit.site/",
   },
   {
     name: "ChickenTalk",
@@ -39,6 +42,7 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "FastAPI", "Airflow", "PostgreSQL", "Docker", "AWS (EC2·S3)", "Claude API", "MCP"],
     repo: "LimJaeHwan-real/ChickenTalk",
+    siteUrl: "https://chickentalk7777.duckdns.org",
   },
   {
     name: "Jungle AI Mentor",
