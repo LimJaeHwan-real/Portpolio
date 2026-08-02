@@ -56,19 +56,6 @@ export const projects: Project[] = [
     repo: "LimJaeHwan-real/jungle-ai-mentor",
   },
   {
-    name: "Mini SQL Processor / DBMS HTTP API",
-    kind: "팀 프로젝트 (2명)",
-    desc: "C 기반 인메모리 SQL 처리기와 B+Tree 인덱스를 동시 요청을 처리하는 HTTP API 서버로 확장한 팀 프로젝트입니다.",
-    roles: [
-      "공용 DB 서버 하네스와 HTTP 런타임을 구축하고, SQL 요청 파싱과 JSON 응답 처리를 구현했습니다.",
-      "Thread Pool·제한 큐·Read·Write Lock·backpressure·metrics를 구현하고 단위·스모크 테스트를 구성했습니다.",
-    ],
-    tech: ["C"],
-    repo: "Jungle-12-303/wk8-team4-sql-api",
-    // 팀 저장소라 단독 소유가 아님 — README 내용이 바뀌지 않도록 커밋 SHA에 고정한다.
-    ref: "080510e7f6bfb67ee2b3189264409c90b1c73ef0",
-  },
-  {
     name: "Mini Redis",
     kind: "팀 프로젝트",
     desc: "Python으로 구현한 인메모리 키-값 저장소입니다.",
