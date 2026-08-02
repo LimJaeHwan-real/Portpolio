@@ -40,7 +40,7 @@ export const projects: Project[] = [
       "YAML 데이터 카탈로그를 문서·정합성 검증 기준·LLM 프롬프트 컨텍스트 세 역할로 설계해 text-to-SQL 정확도를 확보했습니다.",
       "SELECT 전용·LIMIT 강제·타임아웃의 SQL 안전장치를 두고, 같은 데이터 기반을 REST API와 MCP 서버 두 경로로 노출했습니다.",
     ],
-    tech: ["Python", "FastAPI", "Airflow", "PostgreSQL", "Docker", "AWS (EC2·S3)", "Claude API", "MCP"],
+    tech: ["Python", "FastAPI", "Airflow", "PostgreSQL", "Docker", "AWS (EC2·S3)"],
     repo: "LimJaeHwan-real/ChickenTalk",
     siteUrl: "https://chickentalk7777.duckdns.org",
   },
@@ -52,7 +52,7 @@ export const projects: Project[] = [
       "문서를 700자 단위·120자 중첩으로 나누고, pgvector 의미 검색과 단어 검색을 결합해 검색 정확도를 높였습니다.",
       "질문을 학습자료·FAQ·GitHub 코드·일반 답변으로 분기하고, 벡터 검색 실패 시 단어 검색으로 전환했습니다.",
     ],
-    tech: ["React", "TypeScript", "NestJS", "PostgreSQL", "pgvector", "OpenAI API", "GitHub MCP"],
+    tech: ["React", "TypeScript", "NestJS", "PostgreSQL"],
     repo: "LimJaeHwan-real/jungle-ai-mentor",
   },
   {
@@ -63,7 +63,7 @@ export const projects: Project[] = [
       "공용 DB 서버 하네스와 HTTP 런타임을 구축하고, SQL 요청 파싱과 JSON 응답 처리를 구현했습니다.",
       "Thread Pool·제한 큐·Read·Write Lock·backpressure·metrics를 구현하고 단위·스모크 테스트를 구성했습니다.",
     ],
-    tech: ["C", "HTTP/Socket", "B+Tree", "Thread Pool", "Read·Write Lock", "Backpressure"],
+    tech: ["C"],
     repo: "Jungle-12-303/wk8-team4-sql-api",
     // 팀 저장소라 단독 소유가 아님 — README 내용이 바뀌지 않도록 커밋 SHA에 고정한다.
     ref: "080510e7f6bfb67ee2b3189264409c90b1c73ef0",
