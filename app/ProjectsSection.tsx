@@ -39,7 +39,7 @@ export default function Projects({ readmes }: { readmes: Record<string, string> 
               ))}
             </div>
             <div className="actions">
-              <button type="button" className="btn" onClick={() => open(p)}>README</button>
+              <button type="button" className="btn" onClick={() => open(p)}>자세히 보기</button>
               {p.videoUrl && (
                 <a className="btn btn-outline" href={p.videoUrl} target="_blank" rel="noreferrer">
                   <span style={{ fontSize: 11 }}>▶</span>영상 보기
