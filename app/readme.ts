@@ -1,5 +1,22 @@
-import { marked } from "marked";
+import { Marked } from "marked";
 import sanitizeHtml from "sanitize-html";
+
+/* ponytail: mermaid 코드 블록은 클라이언트 렌더러(mermaid.js ~500KB)를 싣는 대신
+   mermaid.ink 이미지 URL로 치환한다. 서버에서 문자열만 만들면 되고, 기존 img allowlist를
+   그대로 통과한다. mermaid.ink 장애 시 다이어그램만 alt 텍스트로 표시된다 —
+   자체 렌더링이 필요해지면 rehype-mermaid(빌드 타임)로 교체. */
+const marked = new Marked({
+  renderer: {
+    code({ text, lang }) {
+      if (lang?.split(/\s/)[0] !== "mermaid") return false;
+      const payload = Buffer.from(
+        JSON.stringify({ code: text, mermaid: { theme: "neutral" } }),
+      ).toString("base64url");
+      // bgColor: 모달 배경(#f3f2f2)과 맞춘다
+      return `<img src="https://mermaid.ink/svg/${payload}?bgColor=f3f2f2" alt="mermaid 다이어그램">`;
+    },
+  },
+});
 
 const FALLBACK =
   "<p>README를 불러올 수 없습니다.</p>" +

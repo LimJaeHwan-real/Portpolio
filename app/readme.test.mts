@@ -83,3 +83,17 @@ test("프로토콜 상대 URL(//)은 치환하지 않는다", () => {
   const html = renderReadme("![img](//example.com/x.png)", "owner/repo");
   assert.match(html, /src="\/\/example\.com\/x\.png"/);
 });
+
+test("mermaid 코드 블록은 mermaid.ink 이미지로 렌더한다", () => {
+  const md = "```mermaid\nflowchart LR\n    A --> B\n```";
+  const html = renderReadme(md, "owner/repo");
+  assert.match(html, /<img src="https:\/\/mermaid\.ink\/svg\//);
+  assert.doesNotMatch(html, /<pre/);
+  assert.doesNotMatch(html, /flowchart LR/);
+});
+
+test("mermaid가 아닌 코드 블록은 그대로 pre/code로 렌더한다", () => {
+  const html = renderReadme("```bash\nnpm test\n```", "owner/repo");
+  assert.match(html, /<pre><code[^>]*>npm test/);
+  assert.doesNotMatch(html, /mermaid\.ink/);
+});
