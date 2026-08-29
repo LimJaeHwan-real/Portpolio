@@ -31,6 +31,19 @@ export const projects: Project[] = [
     siteUrl: "https://www.tryorbit.site/",
   },
   {
+    name: "ChickenTalk",
+    kind: "개인 프로젝트",
+    desc: "PUBG 전적 데이터에 한국어로 질문하면 LLM이 데이터 카탈로그를 참고해 SQL을 생성·실행하고 차트로 답하는 데이터 파이프라인 프로젝트입니다.",
+    roles: [
+      "Airflow 일 배치 DAG(수집→마트→품질→정합성 검증)로 14일 후 소멸되는 매치 데이터 1,500건·23만 행을 무인 증분 적재했습니다.",
+      "데이터 카탈로그와 실제 DB 구조가 어긋나면 LLM이 잘못된 답을 만들기 때문에, 둘의 일치를 자동 검사하는 검증 단계를 파이프라인에 넣었습니다.",
+      "이 검증으로 무기가 아닌 데이터(차량·낙사 등)가 무기 통계에 섞여 들어가던 문제를 발견하고, 원본 데이터를 확인해 수집 코드를 바로잡았습니다.",
+    ],
+    tech: ["Python", "FastAPI", "Airflow", "PostgreSQL", "Docker", "AWS (EC2·S3)"],
+    repo: "LimJaeHwan-real/ChickenTalk",
+    siteUrl: "https://chickentalk7777.duckdns.org",
+  },
+  {
     name: "Jungle AI Mentor",
     kind: "개인 프로젝트",
     desc: "정글 학습자료 검색과 GitHub 코드 조회를 질문 유형에 따라 연결하는 RAG 기반 AI 멘토 서비스입니다.",
