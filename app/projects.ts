@@ -28,20 +28,6 @@ export const projects: Project[] = [
     // 팀 저장소라 단독 소유가 아님 — README 내용이 바뀌지 않도록 커밋 SHA에 고정한다.
     ref: "ff098b08775bd1645747e77b4949f75b50188ecb",
     videoUrl: "https://www.youtube.com/watch?v=A8zEN_jbdo8&t=324s",
-    siteUrl: "https://www.tryorbit.site/",
-  },
-  {
-    name: "ChickenTalk",
-    kind: "개인 프로젝트",
-    desc: "PUBG 전적 데이터에 한국어로 질문하면 LLM이 데이터 카탈로그를 참고해 SQL을 생성·실행하고 차트로 답하는 데이터 파이프라인 프로젝트입니다.",
-    roles: [
-      "Airflow 일 배치 DAG(수집→마트→품질→정합성 검증)로 14일 후 소멸되는 매치 데이터 1,500건·23만 행을 무인 증분 적재했습니다.",
-      "데이터 카탈로그와 실제 DB 구조가 어긋나면 LLM이 잘못된 답을 만들기 때문에, 둘의 일치를 자동 검사하는 검증 단계를 파이프라인에 넣었습니다.",
-      "이 검증으로 무기가 아닌 데이터(차량·낙사 등)가 무기 통계에 섞여 들어가던 문제를 발견하고, 원본 데이터를 확인해 수집 코드를 바로잡았습니다.",
-    ],
-    tech: ["Python", "FastAPI", "Airflow", "PostgreSQL", "Docker", "AWS (EC2·S3)"],
-    repo: "LimJaeHwan-real/ChickenTalk",
-    siteUrl: "https://chickentalk7777.duckdns.org",
   },
   {
     name: "Jungle AI Mentor",
